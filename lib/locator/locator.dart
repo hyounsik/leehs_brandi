@@ -11,4 +11,6 @@ void registeGlobals() {
   locator.registerSingleton<Environment>(Environment());
   locator.registerSingleton<LogService>(LogService.instance);
   locator.registerSingleton<AppRoute>(AppRoute.instance);
+  locator.registerSingleton<ThemeService>(ThemeService(),
+      dispose: (_) => _.dispose());
 }

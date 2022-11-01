@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:leehs_brandi/globals.dart';
+import 'package:rxdart/rxdart.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -32,8 +31,20 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: route.delegate,
-    );
+    return StreamBuilder<List>(
+        stream: Rx.combineLatest2<ThemeData, RoutemasterDelegate, List>(
+            themes.themeData,
+            route.routerDelegate,
+            (themeData, routeDelegate) => [themeData, routeDelegate]),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return Container();
+          final themeData = snapshot.data![0] as ThemeData;
+          final routerDelegate = snapshot.data![1] as RoutemasterDelegate;
+          return MaterialApp.router(
+            routerDelegate: routerDelegate,
+            routeInformationParser: const RoutemasterParser(),
+            theme: themeData,
+          );
+        });
   }
 }
