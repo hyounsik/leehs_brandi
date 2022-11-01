@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:leehs_brandi/globals.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -36,6 +37,7 @@ class KakaoImageSearchBloc implements Disposable {
   Function get _setImages => _images.add;
 
   Timer? timer;
+  final formKey = GlobalKey<FormState>();
 
   loadNext() async {
     if (currentQuery == null || currentQuery!.isEmpty) return;
@@ -88,12 +90,25 @@ class KakaoImageSearchBloc implements Disposable {
     timer?.cancel();
     timer = Timer(const Duration(seconds: 1), () {
       setSearchState(ImageSearchState.idle);
-      searchImage(query);
+
+      final validated = _validateQuery(query);
+      if (validated) searchImage(query);
     });
   }
 
   changeQuery(String? query) {
     _resetTimer(query);
+  }
+
+  bool _validateQuery(String? query) {
+    formKey.currentState?.validate();
+    if (query == null || query.isEmpty) {
+      return false;
+    } else if (query.length < 2 || query.length > 10) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @override
