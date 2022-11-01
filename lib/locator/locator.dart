@@ -18,6 +18,6 @@ void registeGlobals() {
   locator.registerSingleton<KakaoRestApi>(KakaoRestApi());
   locator.registerSingletonWithDependencies<Repository>(() {
     final kakaoApi = locator.get<KakaoRestApi>();
-    return Repository(kakaoApi);
+    return Repository(kakaoRestApi: kakaoApi);
   }, dependsOn: [KakaoRestApi]);
 }
