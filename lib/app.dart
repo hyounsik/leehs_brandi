@@ -32,6 +32,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp.router(
+      routerDelegate: route.delegate,
+    );
   }
 }
