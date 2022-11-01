@@ -3,4 +3,4 @@ const kakaoRestApiKey = 'a73094bfcb44bfea38c6015b78bd8940';
 const kakaoJavascriptKey = 'ce6c1eb0a32420afd290210514028e62';
 const kakaoAdminKey = 'e21af17ce09eb8343a194621cb3a5937';
 
-const kakaoRestUrl = 'https://dapi.kakao.com';
+const kakaoRestUrl = 'dapi.kakao.com';

@@ -15,9 +15,13 @@ void registeGlobals() {
   locator.registerSingleton<AppRoute>(AppRoute.instance);
   locator.registerSingleton<ThemeService>(ThemeService(),
       dispose: (_) => _.dispose());
-  locator.registerSingleton<KakaoRestApi>(KakaoRestApi());
-  locator.registerSingletonWithDependencies<Repository>(() {
-    final kakaoApi = locator.get<KakaoRestApi>();
+  locator.registerSingletonAsync<KakaoRestApi>(
+    () async {
+      return KakaoRestApi();
+    },
+  );
+  locator.registerSingletonAsync<Repository>(() async {
+    final kakaoApi = await locator.getAsync<KakaoRestApi>();
     return Repository(kakaoRestApi: kakaoApi);
   }, dependsOn: [KakaoRestApi]);
 }

@@ -15,8 +15,8 @@ class KakaoImageSearchRequest with _$KakaoImageSearchRequest {
   factory KakaoImageSearchRequest({
     required String query,
     @Default(KakaoImageSearchSort.accuracy) KakaoImageSearchSort? sort,
-    @Default(1) int? page,
-    @Default(30) int? size,
+    @Default('1') String? page,
+    @Default('30') String? size,
   }) = _KakaoImageSearchRequest;
 
   factory KakaoImageSearchRequest.fromJson(Map<String, dynamic> json) =>

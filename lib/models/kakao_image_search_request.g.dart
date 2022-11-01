@@ -12,8 +12,8 @@ _$_KakaoImageSearchRequest _$$_KakaoImageSearchRequestFromJson(
       query: json['query'] as String,
       sort: $enumDecodeNullable(_$KakaoImageSearchSortEnumMap, json['sort']) ??
           KakaoImageSearchSort.accuracy,
-      page: json['page'] as int? ?? 1,
-      size: json['size'] as int? ?? 30,
+      page: json['page'] as String? ?? '1',
+      size: json['size'] as String? ?? '30',
     );
 
 Map<String, dynamic> _$$_KakaoImageSearchRequestToJson(

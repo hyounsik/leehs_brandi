@@ -23,8 +23,8 @@ KakaoImageSearchRequest _$KakaoImageSearchRequestFromJson(
 mixin _$KakaoImageSearchRequest {
   String get query => throw _privateConstructorUsedError;
   KakaoImageSearchSort? get sort => throw _privateConstructorUsedError;
-  int? get page => throw _privateConstructorUsedError;
-  int? get size => throw _privateConstructorUsedError;
+  String? get page => throw _privateConstructorUsedError;
+  String? get size => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,8 @@ abstract class $KakaoImageSearchRequestCopyWith<$Res> {
           $Res Function(KakaoImageSearchRequest) then) =
       _$KakaoImageSearchRequestCopyWithImpl<$Res, KakaoImageSearchRequest>;
   @useResult
-  $Res call({String query, KakaoImageSearchSort? sort, int? page, int? size});
+  $Res call(
+      {String query, KakaoImageSearchSort? sort, String? page, String? size});
 }
 
 /// @nodoc
@@ -72,11 +73,11 @@ class _$KakaoImageSearchRequestCopyWithImpl<$Res,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ) as $Val);
   }
 }
@@ -89,7 +90,8 @@ abstract class _$$_KakaoImageSearchRequestCopyWith<$Res>
       __$$_KakaoImageSearchRequestCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String query, KakaoImageSearchSort? sort, int? page, int? size});
+  $Res call(
+      {String query, KakaoImageSearchSort? sort, String? page, String? size});
 }
 
 /// @nodoc
@@ -121,11 +123,11 @@ class __$$_KakaoImageSearchRequestCopyWithImpl<$Res>
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -136,8 +138,8 @@ class _$_KakaoImageSearchRequest implements _KakaoImageSearchRequest {
   _$_KakaoImageSearchRequest(
       {required this.query,
       this.sort = KakaoImageSearchSort.accuracy,
-      this.page = 1,
-      this.size = 30});
+      this.page = '1',
+      this.size = '30'});
 
   factory _$_KakaoImageSearchRequest.fromJson(Map<String, dynamic> json) =>
       _$$_KakaoImageSearchRequestFromJson(json);
@@ -149,10 +151,10 @@ class _$_KakaoImageSearchRequest implements _KakaoImageSearchRequest {
   final KakaoImageSearchSort? sort;
   @override
   @JsonKey()
-  final int? page;
+  final String? page;
   @override
   @JsonKey()
-  final int? size;
+  final String? size;
 
   @override
   String toString() {
@@ -194,8 +196,8 @@ abstract class _KakaoImageSearchRequest implements KakaoImageSearchRequest {
   factory _KakaoImageSearchRequest(
       {required final String query,
       final KakaoImageSearchSort? sort,
-      final int? page,
-      final int? size}) = _$_KakaoImageSearchRequest;
+      final String? page,
+      final String? size}) = _$_KakaoImageSearchRequest;
 
   factory _KakaoImageSearchRequest.fromJson(Map<String, dynamic> json) =
       _$_KakaoImageSearchRequest.fromJson;
@@ -205,9 +207,9 @@ abstract class _KakaoImageSearchRequest implements KakaoImageSearchRequest {
   @override
   KakaoImageSearchSort? get sort;
   @override
-  int? get page;
+  String? get page;
   @override
-  int? get size;
+  String? get size;
   @override
   @JsonKey(ignore: true)
   _$$_KakaoImageSearchRequestCopyWith<_$_KakaoImageSearchRequest>

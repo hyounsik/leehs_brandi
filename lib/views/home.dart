@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:leehs_brandi/globals.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({super.key});
@@ -11,13 +10,29 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('이현식 DEMO')),
       body: SafeArea(
         child: StreamBuilder(
           builder: (context, snapshot) {
-            return Container();
+            return Container(
+              child: TextButton(
+                onPressed: () {
+                  repo
+                      .getImages(KakaoImageSearchRequest(query: '설현'))
+                      .then((value) {
+                    print('object');
+                  });
+                },
+                child: Text('test'),
+              ),
+            );
           },
         ),
       ),
