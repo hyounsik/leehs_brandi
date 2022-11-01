@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:leehs_brandi/globals.dart';
 import 'package:rxdart/rxdart.dart';
 
-enum ImageSearchState { idle, loding }
+enum ImageSearchState { idle, writing, loding }
 
 class KakaoImageSearchBloc implements Disposable {
-  final _searchState =
-      BehaviorSubject<ImageSearchState>.seeded(ImageSearchState.idle);
+  final _searchState = ReplaySubject<ImageSearchState>(maxSize: 2);
   Stream<ImageSearchState?> get searchState => _searchState.stream;
-  ImageSearchState? get currentSearchState => _searchState.valueOrNull;
-  Function get _setSearchState => _searchState.add;
+  ImageSearchState? get previousSearchState => _searchState.values.first;
+  ImageSearchState? get currentSearchState => _searchState.values.last;
+  Function get setSearchState => _searchState.add;
+  bool get isIdle => currentSearchState == ImageSearchState.idle;
+  StreamSubscription<ImageSearchState?>? _searchStateSub;
 
   final _query = BehaviorSubject<String?>();
   Stream<String?> get query => _query.stream;
@@ -29,10 +33,12 @@ class KakaoImageSearchBloc implements Disposable {
   Stream<List<KakaoImageSearchResponseDoc>> get images => _images.stream;
   List<KakaoImageSearchResponseDoc> get currentImages => _images.value;
 
+  Timer? timer;
+
   loadNext() async {
     if (currentQuery == null || currentQuery!.isEmpty) return;
     if (currentMeta == null || currentMeta!.isEnd) return;
-    _setSearchState(ImageSearchState.loding);
+    setSearchState(ImageSearchState.loding);
     _setPage(currentPage + 1);
     KakaoImageSearchResponse response =
         await repo.getImages(query: currentQuery!, page: currentPage);
@@ -43,14 +49,21 @@ class KakaoImageSearchBloc implements Disposable {
       _setMeta(meta);
       _setMeta(currentImages.addAll(documents));
     }
-    _setSearchState(ImageSearchState.idle);
+    setSearchState(ImageSearchState.idle);
   }
 
   searchImage(String? query) async {
-    if (query == null || query.isEmpty) return;
-    _setSearchState(ImageSearchState.loding);
-    _setPage(1);
+    if (query == null || query.isEmpty) {
+      setSearchState(ImageSearchState.idle);
+      return _setQuery(query);
+    }
+    if (currentSearchState != ImageSearchState.idle) return;
+    if (previousSearchState != ImageSearchState.writing) return;
+
     _setQuery(query);
+    setSearchState(ImageSearchState.loding);
+    _setPage(1);
+
     KakaoImageSearchResponse response =
         await repo.getImages(query: currentQuery!, page: currentPage);
     final error = response.error;
@@ -64,7 +77,20 @@ class KakaoImageSearchBloc implements Disposable {
       _setMeta(null);
       _setMeta([]);
     }
-    _setSearchState(ImageSearchState.idle);
+    setSearchState(ImageSearchState.idle);
+  }
+
+  _resetTimer(String? query) {
+    setSearchState(ImageSearchState.writing);
+    timer?.cancel();
+    timer = Timer(const Duration(seconds: 1), () {
+      setSearchState(ImageSearchState.idle);
+      searchImage(query);
+    });
+  }
+
+  changeQuery(String? query) {
+    _resetTimer(query);
   }
 
   @override
@@ -74,5 +100,14 @@ class KakaoImageSearchBloc implements Disposable {
     _page.close();
     _searchState.close();
     _query.close();
+
+    timer?.cancel();
+    _searchStateSub?.cancel();
+  }
+
+  KakaoImageSearchBloc() {
+    _searchStateSub = searchState.listen((state) {
+      if (state == ImageSearchState.writing) {}
+    });
   }
 }
