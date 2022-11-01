@@ -48,11 +48,15 @@ Map<String, dynamic> _$$_KakaoImageSearchResponseMetaToJson(
 _$_KakaoImageSearchResponseDoc _$$_KakaoImageSearchResponseDocFromJson(
         Map<String, dynamic> json) =>
     _$_KakaoImageSearchResponseDoc(
-      title: json['title'] as String? ?? '',
-      contents: json['contents'] as String? ?? '',
-      url: json['url'] as String? ?? '',
-      blogname: json['blogname'] as String? ?? '',
-      thumbnail: json['thumbnail'] as String? ?? '',
+      collection: json['collection'] as String? ?? '',
+      thumbnailUrl: json['thumbnail_url'] as String? ??
+          'https://hsprofile-1025.web.app/images/logo3.png',
+      imageUrl: json['image_url'] as String? ??
+          'https://hsprofile-1025.web.app/images/logo3.png',
+      width: json['width'] as int? ?? 0,
+      height: json['height'] as int? ?? 0,
+      displaySitename: json['display_sitename'] as String? ?? '',
+      docUrl: json['doc_url'] as String? ?? '',
       datetime: json['datetime'] == null
           ? null
           : DateTime.parse(json['datetime'] as String),
@@ -61,10 +65,12 @@ _$_KakaoImageSearchResponseDoc _$$_KakaoImageSearchResponseDocFromJson(
 Map<String, dynamic> _$$_KakaoImageSearchResponseDocToJson(
         _$_KakaoImageSearchResponseDoc instance) =>
     <String, dynamic>{
-      'title': instance.title,
-      'contents': instance.contents,
-      'url': instance.url,
-      'blogname': instance.blogname,
-      'thumbnail': instance.thumbnail,
+      'collection': instance.collection,
+      'thumbnail_url': instance.thumbnailUrl,
+      'image_url': instance.imageUrl,
+      'width': instance.width,
+      'height': instance.height,
+      'display_sitename': instance.displaySitename,
+      'doc_url': instance.docUrl,
       'datetime': instance.datetime?.toIso8601String(),
     };

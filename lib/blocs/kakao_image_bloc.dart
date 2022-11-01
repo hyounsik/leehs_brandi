@@ -12,6 +12,7 @@ class KakaoImageSearchBloc implements Disposable {
   ImageSearchState? get currentSearchState => _searchState.values.last;
   Function get setSearchState => _searchState.add;
   bool get isIdle => currentSearchState == ImageSearchState.idle;
+  bool get isLoding => currentSearchState == ImageSearchState.loding;
   StreamSubscription<ImageSearchState?>? _searchStateSub;
 
   final _query = BehaviorSubject<String?>();
@@ -24,7 +25,7 @@ class KakaoImageSearchBloc implements Disposable {
   int get currentPage => _page.value;
   Function get _setPage => _page.add;
 
-  final _meta = BehaviorSubject<KakaoImageSearchResponseMeta>();
+  final _meta = BehaviorSubject<KakaoImageSearchResponseMeta?>();
   Stream<KakaoImageSearchResponseMeta?> get meta => _meta.stream;
   KakaoImageSearchResponseMeta? get currentMeta => _meta.valueOrNull;
   Function get _setMeta => _meta.add;
@@ -32,22 +33,24 @@ class KakaoImageSearchBloc implements Disposable {
   final _images = BehaviorSubject<List<KakaoImageSearchResponseDoc>>.seeded([]);
   Stream<List<KakaoImageSearchResponseDoc>> get images => _images.stream;
   List<KakaoImageSearchResponseDoc> get currentImages => _images.value;
+  Function get _setImages => _images.add;
 
   Timer? timer;
 
   loadNext() async {
     if (currentQuery == null || currentQuery!.isEmpty) return;
     if (currentMeta == null || currentMeta!.isEnd) return;
+    if (currentSearchState != ImageSearchState.idle) return;
     setSearchState(ImageSearchState.loding);
     _setPage(currentPage + 1);
     KakaoImageSearchResponse response =
         await repo.getImages(query: currentQuery!, page: currentPage);
     final error = response.error;
-    if (error != null) {
+    if (error == null) {
       final meta = response.meta;
       final documents = response.documents;
       _setMeta(meta);
-      _setMeta(currentImages.addAll(documents));
+      _setImages([...currentImages, ...documents]);
     }
     setSearchState(ImageSearchState.idle);
   }
@@ -68,14 +71,14 @@ class KakaoImageSearchBloc implements Disposable {
         await repo.getImages(query: currentQuery!, page: currentPage);
     final error = response.error;
 
-    if (error != null) {
+    if (error == null) {
       final meta = response.meta;
       final documents = response.documents;
       _setMeta(meta);
-      _setMeta(documents);
+      _setImages(documents);
     } else {
       _setMeta(null);
-      _setMeta([]);
+      _setImages([]);
     }
     setSearchState(ImageSearchState.idle);
   }
@@ -106,8 +109,9 @@ class KakaoImageSearchBloc implements Disposable {
   }
 
   KakaoImageSearchBloc() {
+    setSearchState(ImageSearchState.idle);
     _searchStateSub = searchState.listen((state) {
-      if (state == ImageSearchState.writing) {}
+      l.info(this, 'state: query: ${state?.name} $currentQuery');
     });
   }
 }

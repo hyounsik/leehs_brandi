@@ -31,11 +31,17 @@ class KakaoImageSearchResponseMeta with _$KakaoImageSearchResponseMeta {
 @freezed
 class KakaoImageSearchResponseDoc with _$KakaoImageSearchResponseDoc {
   factory KakaoImageSearchResponseDoc({
-    @Default('') String title,
-    @Default('') String contents,
-    @Default('') String url,
-    @Default('') String blogname,
-    @Default('') String thumbnail,
+    @JsonKey(name: 'collection') @Default('') String collection,
+    @JsonKey(name: 'thumbnail_url')
+    @Default('https://hsprofile-1025.web.app/images/logo3.png')
+        String thumbnailUrl,
+    @JsonKey(name: 'image_url')
+    @Default('https://hsprofile-1025.web.app/images/logo3.png')
+        String imageUrl,
+    @JsonKey(name: 'width') @Default(0) int width,
+    @JsonKey(name: 'height') @Default(0) int height,
+    @JsonKey(name: 'display_sitename') @Default('') String displaySitename,
+    @JsonKey(name: 'doc_url') @Default('') String docUrl,
     DateTime? datetime,
   }) = _KakaoImageSearchResponseDoc;
 

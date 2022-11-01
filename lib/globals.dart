@@ -10,6 +10,8 @@ export 'package:leehs_brandi/locator/locator.dart';
 export 'package:leehs_brandi/blocs/blocs.dart';
 export 'package:routemaster/routemaster.dart';
 export 'package:leehs_brandi/models/models.dart';
+export 'package:leehs_brandi/widgets/widgets.dart';
+export 'package:leehs_brandi/views/views.dart';
 
 final env = locator<Environment>();
 final l = locator<LogService>();

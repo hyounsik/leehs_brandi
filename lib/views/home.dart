@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leehs_brandi/globals.dart';
 import 'package:provider/provider.dart';
+import 'package:rxdart/rxdart.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({super.key});
@@ -10,8 +11,20 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
+  final _scrollController = ScrollController();
+
   @override
   void initState() {
+    final bloc = context.read<KakaoImageSearchBloc>();
+    bloc.changeQuery('설현');
+
+    _scrollController.addListener(() {
+      if (_scrollController.offset >=
+              _scrollController.position.maxScrollExtent &&
+          !_scrollController.position.outOfRange) {
+        bloc.loadNext();
+      }
+    });
     super.initState();
   }
 
@@ -21,18 +34,41 @@ class _AppHomeState extends State<AppHome> {
     return Scaffold(
       appBar: AppBar(title: const Text('이현식 DEMO')),
       body: SafeArea(
-        child: StreamBuilder(
-          stream: bloc.images,
+        child: StreamBuilder<List>(
+          stream: Rx.combineLatest2(bloc.images, bloc.searchState,
+              (images, searchState) => [images, searchState]),
+          initialData: const [[], ImageSearchState.idle],
           builder: (context, snapshot) {
-            return Container(
-              child: TextButton(
-                onPressed: () {
-                  repo.getImages(query: '설현').then((value) {
-                    print('object');
-                  });
-                },
-                child: Text('test'),
-              ),
+            List<String> thumbnailUrls = [];
+            thumbnailUrls =
+                bloc.currentImages.map((doc) => doc.thumbnailUrl).toList();
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: TextFormField(),
+                ),
+                Expanded(
+                    child: GridView.builder(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: thumbnailUrls.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 1.5,
+                      crossAxisSpacing: 1.5),
+                  itemBuilder: (context, index) {
+                    String thumbnailUrl = thumbnailUrls[index];
+
+                    return ThumbnailTile(thumbnailUrl);
+                  },
+                )),
+                if (bloc.isLoding)
+                  LinearProgressIndicator(
+                    color: Colors.cyan,
+                    backgroundColor: Colors.cyan[050],
+                  )
+              ],
             );
           },
         ),

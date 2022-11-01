@@ -436,11 +436,20 @@ KakaoImageSearchResponseDoc _$KakaoImageSearchResponseDocFromJson(
 
 /// @nodoc
 mixin _$KakaoImageSearchResponseDoc {
-  String get title => throw _privateConstructorUsedError;
-  String get contents => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  String get blogname => throw _privateConstructorUsedError;
-  String get thumbnail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'collection')
+  String get collection => throw _privateConstructorUsedError;
+  @JsonKey(name: 'thumbnail_url')
+  String get thumbnailUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_url')
+  String get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'width')
+  int get width => throw _privateConstructorUsedError;
+  @JsonKey(name: 'height')
+  int get height => throw _privateConstructorUsedError;
+  @JsonKey(name: 'display_sitename')
+  String get displaySitename => throw _privateConstructorUsedError;
+  @JsonKey(name: 'doc_url')
+  String get docUrl => throw _privateConstructorUsedError;
   DateTime? get datetime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -458,11 +467,13 @@ abstract class $KakaoImageSearchResponseDocCopyWith<$Res> {
           KakaoImageSearchResponseDoc>;
   @useResult
   $Res call(
-      {String title,
-      String contents,
-      String url,
-      String blogname,
-      String thumbnail,
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'display_sitename') String displaySitename,
+      @JsonKey(name: 'doc_url') String docUrl,
       DateTime? datetime});
 }
 
@@ -480,33 +491,43 @@ class _$KakaoImageSearchResponseDocCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? contents = null,
-    Object? url = null,
-    Object? blogname = null,
-    Object? thumbnail = null,
+    Object? collection = null,
+    Object? thumbnailUrl = null,
+    Object? imageUrl = null,
+    Object? width = null,
+    Object? height = null,
+    Object? displaySitename = null,
+    Object? docUrl = null,
     Object? datetime = freezed,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      collection: null == collection
+          ? _value.collection
+          : collection // ignore: cast_nullable_to_non_nullable
               as String,
-      contents: null == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      blogname: null == blogname
-          ? _value.blogname
-          : blogname // ignore: cast_nullable_to_non_nullable
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      displaySitename: null == displaySitename
+          ? _value.displaySitename
+          : displaySitename // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
+      docUrl: null == docUrl
+          ? _value.docUrl
+          : docUrl // ignore: cast_nullable_to_non_nullable
               as String,
       datetime: freezed == datetime
           ? _value.datetime
@@ -526,11 +547,13 @@ abstract class _$$_KakaoImageSearchResponseDocCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
-      String contents,
-      String url,
-      String blogname,
-      String thumbnail,
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+      @JsonKey(name: 'image_url') String imageUrl,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'display_sitename') String displaySitename,
+      @JsonKey(name: 'doc_url') String docUrl,
       DateTime? datetime});
 }
 
@@ -547,33 +570,43 @@ class __$$_KakaoImageSearchResponseDocCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? contents = null,
-    Object? url = null,
-    Object? blogname = null,
-    Object? thumbnail = null,
+    Object? collection = null,
+    Object? thumbnailUrl = null,
+    Object? imageUrl = null,
+    Object? width = null,
+    Object? height = null,
+    Object? displaySitename = null,
+    Object? docUrl = null,
     Object? datetime = freezed,
   }) {
     return _then(_$_KakaoImageSearchResponseDoc(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      collection: null == collection
+          ? _value.collection
+          : collection // ignore: cast_nullable_to_non_nullable
               as String,
-      contents: null == contents
-          ? _value.contents
-          : contents // ignore: cast_nullable_to_non_nullable
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      blogname: null == blogname
-          ? _value.blogname
-          : blogname // ignore: cast_nullable_to_non_nullable
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      displaySitename: null == displaySitename
+          ? _value.displaySitename
+          : displaySitename // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
+      docUrl: null == docUrl
+          ? _value.docUrl
+          : docUrl // ignore: cast_nullable_to_non_nullable
               as String,
       datetime: freezed == datetime
           ? _value.datetime
@@ -587,37 +620,52 @@ class __$$_KakaoImageSearchResponseDocCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_KakaoImageSearchResponseDoc implements _KakaoImageSearchResponseDoc {
   _$_KakaoImageSearchResponseDoc(
-      {this.title = '',
-      this.contents = '',
-      this.url = '',
-      this.blogname = '',
-      this.thumbnail = '',
+      {@JsonKey(name: 'collection')
+          this.collection = '',
+      @JsonKey(name: 'thumbnail_url')
+          this.thumbnailUrl = 'https://hsprofile-1025.web.app/images/logo3.png',
+      @JsonKey(name: 'image_url')
+          this.imageUrl = 'https://hsprofile-1025.web.app/images/logo3.png',
+      @JsonKey(name: 'width')
+          this.width = 0,
+      @JsonKey(name: 'height')
+          this.height = 0,
+      @JsonKey(name: 'display_sitename')
+          this.displaySitename = '',
+      @JsonKey(name: 'doc_url')
+          this.docUrl = '',
       this.datetime});
 
   factory _$_KakaoImageSearchResponseDoc.fromJson(Map<String, dynamic> json) =>
       _$$_KakaoImageSearchResponseDocFromJson(json);
 
   @override
-  @JsonKey()
-  final String title;
+  @JsonKey(name: 'collection')
+  final String collection;
   @override
-  @JsonKey()
-  final String contents;
+  @JsonKey(name: 'thumbnail_url')
+  final String thumbnailUrl;
   @override
-  @JsonKey()
-  final String url;
+  @JsonKey(name: 'image_url')
+  final String imageUrl;
   @override
-  @JsonKey()
-  final String blogname;
+  @JsonKey(name: 'width')
+  final int width;
   @override
-  @JsonKey()
-  final String thumbnail;
+  @JsonKey(name: 'height')
+  final int height;
+  @override
+  @JsonKey(name: 'display_sitename')
+  final String displaySitename;
+  @override
+  @JsonKey(name: 'doc_url')
+  final String docUrl;
   @override
   final DateTime? datetime;
 
   @override
   String toString() {
-    return 'KakaoImageSearchResponseDoc(title: $title, contents: $contents, url: $url, blogname: $blogname, thumbnail: $thumbnail, datetime: $datetime)';
+    return 'KakaoImageSearchResponseDoc(collection: $collection, thumbnailUrl: $thumbnailUrl, imageUrl: $imageUrl, width: $width, height: $height, displaySitename: $displaySitename, docUrl: $docUrl, datetime: $datetime)';
   }
 
   @override
@@ -625,22 +673,25 @@ class _$_KakaoImageSearchResponseDoc implements _KakaoImageSearchResponseDoc {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_KakaoImageSearchResponseDoc &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.contents, contents) ||
-                other.contents == contents) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.blogname, blogname) ||
-                other.blogname == blogname) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
+            (identical(other.collection, collection) ||
+                other.collection == collection) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.displaySitename, displaySitename) ||
+                other.displaySitename == displaySitename) &&
+            (identical(other.docUrl, docUrl) || other.docUrl == docUrl) &&
             (identical(other.datetime, datetime) ||
                 other.datetime == datetime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, title, contents, url, blogname, thumbnail, datetime);
+  int get hashCode => Object.hash(runtimeType, collection, thumbnailUrl,
+      imageUrl, width, height, displaySitename, docUrl, datetime);
 
   @JsonKey(ignore: true)
   @override
@@ -660,26 +711,39 @@ class _$_KakaoImageSearchResponseDoc implements _KakaoImageSearchResponseDoc {
 abstract class _KakaoImageSearchResponseDoc
     implements KakaoImageSearchResponseDoc {
   factory _KakaoImageSearchResponseDoc(
-      {final String title,
-      final String contents,
-      final String url,
-      final String blogname,
-      final String thumbnail,
+      {@JsonKey(name: 'collection') final String collection,
+      @JsonKey(name: 'thumbnail_url') final String thumbnailUrl,
+      @JsonKey(name: 'image_url') final String imageUrl,
+      @JsonKey(name: 'width') final int width,
+      @JsonKey(name: 'height') final int height,
+      @JsonKey(name: 'display_sitename') final String displaySitename,
+      @JsonKey(name: 'doc_url') final String docUrl,
       final DateTime? datetime}) = _$_KakaoImageSearchResponseDoc;
 
   factory _KakaoImageSearchResponseDoc.fromJson(Map<String, dynamic> json) =
       _$_KakaoImageSearchResponseDoc.fromJson;
 
   @override
-  String get title;
+  @JsonKey(name: 'collection')
+  String get collection;
   @override
-  String get contents;
+  @JsonKey(name: 'thumbnail_url')
+  String get thumbnailUrl;
   @override
-  String get url;
+  @JsonKey(name: 'image_url')
+  String get imageUrl;
   @override
-  String get blogname;
+  @JsonKey(name: 'width')
+  int get width;
   @override
-  String get thumbnail;
+  @JsonKey(name: 'height')
+  int get height;
+  @override
+  @JsonKey(name: 'display_sitename')
+  String get displaySitename;
+  @override
+  @JsonKey(name: 'doc_url')
+  String get docUrl;
   @override
   DateTime? get datetime;
   @override

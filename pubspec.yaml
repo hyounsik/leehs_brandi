@@ -38,7 +38,7 @@ dependencies:
   json_annotation: ^4.7.0
   connectivity_plus: ^3.0.2
   routemaster: ^1.0.1
-  inview_notifier_list: ^3.0.0
+  cached_network_image: ^3.2.2
   http: ^0.13.5
 
 
