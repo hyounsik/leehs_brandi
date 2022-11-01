@@ -8,4 +8,5 @@ void registeGlobals() {
   locator.registerSingleton<ConnectivityService>(ConnectivityService(),
       dispose: (_) => _.dispose());
   locator.registerSingleton<Environment>(Environment());
+  locator.registerSingleton<Environment>(Environment());
 }
