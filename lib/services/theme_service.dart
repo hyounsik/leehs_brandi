@@ -21,7 +21,7 @@ class ThemeService implements Disposable {
       _platformBrightness.stream.distinct();
   Brightness get currentPlatformBrightness => _platformBrightness.value;
 
-  final _themeData = BehaviorSubject<ThemeData>.seeded(ThemeData.dark());
+  final _themeData = BehaviorSubject<ThemeData>.seeded(ThemeData.light());
   Stream<ThemeData> get themeData => _themeData.stream;
   ThemeData get currentThemeData => _themeData.value;
   AppTextTheme get currentTextTheme =>

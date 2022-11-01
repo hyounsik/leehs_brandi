@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leehs_brandi/views/views.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -7,7 +8,7 @@ class AppRoute {
   static AppRoute get instance => _instance;
 
   late final initStateRouteMap = RouteMap(
-      onUnknownRoute: (_) => MaterialPage(child: Container()),
+      onUnknownRoute: (_) => const MaterialPage(child: SplashScreen()),
       routes: const {});
 
   late final _routerDelegate = BehaviorSubject<RoutemasterDelegate>.seeded(
@@ -22,7 +23,7 @@ class AppRoute {
         routesBuilder: (_) =>
             RouteMap(onUnknownRoute: (_) => const Redirect('/'), routes: {
               '/': (_) {
-                return MaterialPage(name: 'home', child: Container());
+                return const MaterialPage(name: 'home', child: AppHome());
               }
             }));
 
