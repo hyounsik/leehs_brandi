@@ -24,9 +24,7 @@ class _AppHomeState extends State<AppHome> {
             return Container(
               child: TextButton(
                 onPressed: () {
-                  repo
-                      .getImages(KakaoImageSearchRequest(query: '설현'))
-                      .then((value) {
+                  repo.getImages(query: '설현').then((value) {
                     print('object');
                   });
                 },

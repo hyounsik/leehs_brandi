@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:leehs_brandi/globals.dart';
 import 'package:leehs_brandi/views/views.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:provider/provider.dart';
+
 import 'package:rxdart/rxdart.dart';
 
 class AppRoute {
@@ -23,7 +25,18 @@ class AppRoute {
         routesBuilder: (_) =>
             RouteMap(onUnknownRoute: (_) => const Redirect('/'), routes: {
               '/': (_) {
-                return const MaterialPage(name: 'home', child: AppHome());
+                return const Redirect('/search');
+              },
+              '/search': (_) {
+                return MaterialPage(
+                    name: 'home',
+                    child: Provider<KakaoImageSearchBloc>(
+                        create: (_) => KakaoImageSearchBloc(),
+                        dispose: (_, bloc) => bloc.dispose(),
+                        child: const AppHome()));
+              },
+              '/search/detail': (_) {
+                return MaterialPage(name: 'home', child: Container());
               }
             }));
 

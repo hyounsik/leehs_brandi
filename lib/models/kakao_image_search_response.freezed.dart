@@ -22,6 +22,7 @@ KakaoImageSearchResponse _$KakaoImageSearchResponseFromJson(
 /// @nodoc
 mixin _$KakaoImageSearchResponse {
   KakaoImageSearchResponseMeta? get meta => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
   List<KakaoImageSearchResponseDoc> get documents =>
       throw _privateConstructorUsedError;
 
@@ -39,6 +40,7 @@ abstract class $KakaoImageSearchResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {KakaoImageSearchResponseMeta? meta,
+      String? error,
       List<KakaoImageSearchResponseDoc> documents});
 
   $KakaoImageSearchResponseMetaCopyWith<$Res>? get meta;
@@ -59,6 +61,7 @@ class _$KakaoImageSearchResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? meta = freezed,
+    Object? error = freezed,
     Object? documents = null,
   }) {
     return _then(_value.copyWith(
@@ -66,6 +69,10 @@ class _$KakaoImageSearchResponseCopyWithImpl<$Res,
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as KakaoImageSearchResponseMeta?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
       documents: null == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
@@ -97,6 +104,7 @@ abstract class _$$_KakaoImageSearchResponseCopyWith<$Res>
   @useResult
   $Res call(
       {KakaoImageSearchResponseMeta? meta,
+      String? error,
       List<KakaoImageSearchResponseDoc> documents});
 
   @override
@@ -116,6 +124,7 @@ class __$$_KakaoImageSearchResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? meta = freezed,
+    Object? error = freezed,
     Object? documents = null,
   }) {
     return _then(_$_KakaoImageSearchResponse(
@@ -123,6 +132,10 @@ class __$$_KakaoImageSearchResponseCopyWithImpl<$Res>
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as KakaoImageSearchResponseMeta?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
       documents: null == documents
           ? _value._documents
           : documents // ignore: cast_nullable_to_non_nullable
@@ -136,7 +149,9 @@ class __$$_KakaoImageSearchResponseCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_KakaoImageSearchResponse implements _KakaoImageSearchResponse {
   _$_KakaoImageSearchResponse(
-      {this.meta, final List<KakaoImageSearchResponseDoc> documents = const []})
+      {this.meta,
+      this.error,
+      final List<KakaoImageSearchResponseDoc> documents = const []})
       : _documents = documents;
 
   factory _$_KakaoImageSearchResponse.fromJson(Map<String, dynamic> json) =>
@@ -144,6 +159,8 @@ class _$_KakaoImageSearchResponse implements _KakaoImageSearchResponse {
 
   @override
   final KakaoImageSearchResponseMeta? meta;
+  @override
+  final String? error;
   final List<KakaoImageSearchResponseDoc> _documents;
   @override
   @JsonKey()
@@ -154,7 +171,7 @@ class _$_KakaoImageSearchResponse implements _KakaoImageSearchResponse {
 
   @override
   String toString() {
-    return 'KakaoImageSearchResponse(meta: $meta, documents: $documents)';
+    return 'KakaoImageSearchResponse(meta: $meta, error: $error, documents: $documents)';
   }
 
   @override
@@ -163,14 +180,15 @@ class _$_KakaoImageSearchResponse implements _KakaoImageSearchResponse {
         (other.runtimeType == runtimeType &&
             other is _$_KakaoImageSearchResponse &&
             (identical(other.meta, meta) || other.meta == meta) &&
+            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other._documents, _documents));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, meta, const DeepCollectionEquality().hash(_documents));
+  int get hashCode => Object.hash(runtimeType, meta, error,
+      const DeepCollectionEquality().hash(_documents));
 
   @JsonKey(ignore: true)
   @override
@@ -190,6 +208,7 @@ class _$_KakaoImageSearchResponse implements _KakaoImageSearchResponse {
 abstract class _KakaoImageSearchResponse implements KakaoImageSearchResponse {
   factory _KakaoImageSearchResponse(
           {final KakaoImageSearchResponseMeta? meta,
+          final String? error,
           final List<KakaoImageSearchResponseDoc> documents}) =
       _$_KakaoImageSearchResponse;
 
@@ -198,6 +217,8 @@ abstract class _KakaoImageSearchResponse implements KakaoImageSearchResponse {
 
   @override
   KakaoImageSearchResponseMeta? get meta;
+  @override
+  String? get error;
   @override
   List<KakaoImageSearchResponseDoc> get documents;
   @override

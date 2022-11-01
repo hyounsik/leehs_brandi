@@ -13,6 +13,7 @@ _$_KakaoImageSearchResponse _$$_KakaoImageSearchResponseFromJson(
           ? null
           : KakaoImageSearchResponseMeta.fromJson(
               json['meta'] as Map<String, dynamic>),
+      error: json['error'] as String?,
       documents: (json['documents'] as List<dynamic>?)
               ?.map((e) => KakaoImageSearchResponseDoc.fromJson(
                   e as Map<String, dynamic>))
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_KakaoImageSearchResponseToJson(
         _$_KakaoImageSearchResponse instance) =>
     <String, dynamic>{
       'meta': instance.meta?.toJson(),
+      'error': instance.error,
       'documents': instance.documents.map((e) => e.toJson()).toList(),
     };
 

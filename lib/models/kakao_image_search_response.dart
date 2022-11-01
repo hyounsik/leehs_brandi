@@ -8,6 +8,7 @@ class KakaoImageSearchResponse with _$KakaoImageSearchResponse {
   @JsonSerializable(explicitToJson: true)
   factory KakaoImageSearchResponse(
           {KakaoImageSearchResponseMeta? meta,
+          String? error,
           @Default([]) List<KakaoImageSearchResponseDoc> documents}) =
       _KakaoImageSearchResponse;
 
