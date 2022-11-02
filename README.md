@@ -6,6 +6,9 @@
 
 라이브러리는 Flutter Favorite로 선정 되었거나 Like & Popularity가 높은 것을 사용하였습니다.
 
+## 개발 환경
+vs code
+
 ### 상태관리자
 provider, rxdart
 
