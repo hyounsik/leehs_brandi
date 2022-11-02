@@ -16,6 +16,7 @@ abstract class BaseLogService {
   void shout(Object? caller, Object? message);
 }
 
+/// LogService
 class LogService extends BaseLogService {
   static final LogService _instance = LogService._();
   static LogService get instance => _instance;

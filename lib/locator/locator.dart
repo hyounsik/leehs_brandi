@@ -8,6 +8,9 @@ import 'package:http/http.dart' as http;
 
 final locator = GetIt.instance;
 
+/// dependency injection
+///
+/// 앱 글로벌 환경에 필요한 객체들을 주입 합니다.
 void registeGlobals() {
   locator.registerSingleton<ConnectivityService>(ConnectivityService(),
       dispose: (_) => _.dispose());

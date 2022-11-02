@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 enum ImageSearchState { idle, writing, loding }
 
+/// AppSearchHome과 DetailPage의 상태 관리 및 비즈니스 로직 수행
 class KakaoImageSearchBloc implements Disposable {
   final _searchState = ReplaySubject<ImageSearchState>(maxSize: 2);
   Stream<ImageSearchState?> get searchState => _searchState.stream;
@@ -44,6 +45,12 @@ class KakaoImageSearchBloc implements Disposable {
   Timer? timer;
   final formKey = GlobalKey<FormState>();
 
+  /// 현재 쿼리값 기준으로 다음 이미지 목록을 얻어 옵니다.
+  ///
+  /// 현재 쿼리값이 null 이거나 ''과 같으면 바로 리턴 됩니다.
+  /// 현재 메타 null 이거나 마지막 페이지이면 바로 리턴 됩니다.
+  /// 로딩 중에는 SearchState가 loding 상태가 됩니다.
+  /// 로딩이 끝나면 SearchState가 idle 상태가 됩니다.
   loadNext() async {
     if (currentQuery == null || currentQuery!.isEmpty) return;
     if (currentMeta == null || currentMeta!.isEnd) return;
@@ -62,6 +69,13 @@ class KakaoImageSearchBloc implements Disposable {
     setSearchState(ImageSearchState.idle);
   }
 
+  /// [query] 기준으로 이미지 목록을 얻어 옵니다.
+  ///
+  /// [query] null 이거나 ''과 같으면 SearchState가 idle이 되고 리턴 됩니다.
+  /// 현재 SearchState가 idle이 아니면 리턴 됩니다.
+  /// 이전 SearchState가 writing 아니면 리턴 됩니다.
+  /// 로딩 중에는 SearchState가 loding 상태가 됩니다.
+  /// 로딩이 끝나면 SearchState가 idle 상태가 됩니다.
   searchImage(String? query) async {
     if (query == null || query.isEmpty) {
       setSearchState(ImageSearchState.idle);
@@ -90,6 +104,8 @@ class KakaoImageSearchBloc implements Disposable {
     setSearchState(ImageSearchState.idle);
   }
 
+  /// SearchState를 writing 으로 변경 하고, 1초 후 [searchImage]를 호출 합니다.
+  /// 1초가 지나기 전에 [_resetTimer]가 다시 호출 되면 지존 timer는 취소 됩니다.
   _resetTimer(String? query) {
     setSearchState(ImageSearchState.writing);
     timer?.cancel();

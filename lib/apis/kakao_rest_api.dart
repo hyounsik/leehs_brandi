@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:leehs_brandi/globals.dart';
 import 'package:http/http.dart' as http;
 
+/// Rest api
 class KakaoRestApi {
   final http.Client client;
   KakaoRestApi(this.client);
@@ -37,6 +38,7 @@ class KakaoRestApi {
     return _response(response);
   }
 
+  /// GET /v2/search/image
   Future<Map<String, dynamic>> getImages(KakaoImageSearchRequest request) {
     return _get('/v2/search/image', request.toJson());
   }

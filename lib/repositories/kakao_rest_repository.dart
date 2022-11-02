@@ -1,6 +1,7 @@
 import 'package:leehs_brandi/repositories/repository.dart';
 import 'package:leehs_brandi/globals.dart';
 
+/// 카카오 이미지 검색 Repository Mixin
 mixin KakaoRestRepositoryMixin on BaseRepository {
   Future<KakaoImageSearchResponse> getImages(
       {required String query,

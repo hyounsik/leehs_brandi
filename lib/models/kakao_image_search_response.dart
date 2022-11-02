@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'kakao_image_search_response.freezed.dart';
 part 'kakao_image_search_response.g.dart';
 
+/// 카카오 이미지 검색 응답 모델
 @freezed
 class KakaoImageSearchResponse with _$KakaoImageSearchResponse {
   @JsonSerializable(explicitToJson: true)
@@ -16,6 +17,7 @@ class KakaoImageSearchResponse with _$KakaoImageSearchResponse {
       _$KakaoImageSearchResponseFromJson(json);
 }
 
+/// 카카오 이미지 검색 응답 메타 모델
 @freezed
 class KakaoImageSearchResponseMeta with _$KakaoImageSearchResponseMeta {
   factory KakaoImageSearchResponseMeta({
@@ -28,6 +30,7 @@ class KakaoImageSearchResponseMeta with _$KakaoImageSearchResponseMeta {
       _$KakaoImageSearchResponseMetaFromJson(json);
 }
 
+/// 카카오 이미지 검색 응답 도큐먼트 모델
 @freezed
 class KakaoImageSearchResponseDoc with _$KakaoImageSearchResponseDoc {
   factory KakaoImageSearchResponseDoc({

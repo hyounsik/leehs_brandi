@@ -1,16 +1,16 @@
 # leehs_brandi
 
-A new Flutter project.
+이현식 DEMO 앱
 
-## Getting Started
+## 사용 Library
 
-This project is a starting point for a Flutter application.
+라이브러리는 Flutter Favorite로 선정 되었거나 Like & Popularity가 높은 것을 사용하였습니다.
 
-A few resources to get you started if this is your first Flutter project:
+### 상태관리자
+provider, rxdart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 네비게이션
+routemaster
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Dependency Injection
+get_it

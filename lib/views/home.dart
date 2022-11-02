@@ -3,6 +3,9 @@ import 'package:leehs_brandi/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
+/// 메인 화면
+///
+/// 카카오 이미지 검색을 사용하여 결과를 얻어오고 썸네일을 노출 합니다.
 class AppSearchHome extends StatefulWidget {
   const AppSearchHome({super.key});
 
