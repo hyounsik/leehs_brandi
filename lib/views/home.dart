@@ -3,14 +3,14 @@ import 'package:leehs_brandi/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AppHome extends StatefulWidget {
-  const AppHome({super.key});
+class AppSearchHome extends StatefulWidget {
+  const AppSearchHome({super.key});
 
   @override
-  State<AppHome> createState() => _AppHomeState();
+  State<AppSearchHome> createState() => _AppSearchHomeState();
 }
 
-class _AppHomeState extends State<AppHome> {
+class _AppSearchHomeState extends State<AppSearchHome> {
   final _scrollController = ScrollController();
 
   @override

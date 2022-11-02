@@ -3,6 +3,8 @@ import 'package:leehs_brandi/globals.dart';
 import 'package:http/http.dart' as http;
 
 class KakaoRestApi {
+  final http.Client client;
+  KakaoRestApi(this.client);
   Future<Map<String, dynamic>> _response(http.Response response) async {
     if (response.statusCode == 200) {
       // l.info(this, "responseBody : ${response.body}");
@@ -25,7 +27,7 @@ class KakaoRestApi {
     String apiUrl = env.kakaoUrl;
 
     final url = Uri.https(apiUrl, path, queryParameters);
-    http.Response response = await http.get(
+    http.Response response = await client.get(
       url,
       headers: {
         'Content-type': 'application/json',
@@ -37,5 +39,12 @@ class KakaoRestApi {
 
   Future<Map<String, dynamic>> getImages(KakaoImageSearchRequest request) {
     return _get('/v2/search/image', request.toJson());
+  }
+
+  Future<Map<String, dynamic>> getImagesWithQuery(
+    String query,
+  ) {
+    final request = KakaoImageSearchRequest(query: query);
+    return getImages(request);
   }
 }

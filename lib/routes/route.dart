@@ -30,7 +30,7 @@ class AppRoute {
                 return MaterialPage(
                     name: 'search',
                     child: Provider<KakaoImageSearchBloc>.value(
-                        value: imageSearchBloc, child: const AppHome()));
+                        value: imageSearchBloc, child: const AppSearchHome()));
               },
               '/search/detail': (_) {
                 return MaterialPage(
