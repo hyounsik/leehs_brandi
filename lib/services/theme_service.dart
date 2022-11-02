@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
 
+/// ThemeService
+///
+/// 기본 테마 및 스타일 셋팅
 class ThemeService implements Disposable {
   final _themeMode = BehaviorSubject<ThemeMode>.seeded(ThemeMode.light);
   Stream<ThemeMode> get themeMode => _themeMode.stream.distinct();

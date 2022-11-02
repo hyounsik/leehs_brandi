@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:leehs_brandi/globals.dart';
 import 'package:provider/provider.dart';
 
+/// 이미지 상세 화면
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key});
 
