@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:leehs_brandi/globals.dart';
 
 class SplashScreen extends StatelessWidget {

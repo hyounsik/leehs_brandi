@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:leehs_brandi/globals.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -35,6 +34,12 @@ class KakaoImageSearchBloc implements Disposable {
   Stream<List<KakaoImageSearchResponseDoc>> get images => _images.stream;
   List<KakaoImageSearchResponseDoc> get currentImages => _images.value;
   Function get _setImages => _images.add;
+
+  final _selectedImage = BehaviorSubject<KakaoImageSearchResponseDoc?>();
+  Stream<KakaoImageSearchResponseDoc?> get selectedImage =>
+      _selectedImage.stream;
+  KakaoImageSearchResponseDoc? get currentImage => _selectedImage.value;
+  Function get setSelectedImage => _selectedImage.add;
 
   Timer? timer;
   final formKey = GlobalKey<FormState>();
@@ -80,7 +85,7 @@ class KakaoImageSearchBloc implements Disposable {
       _setImages(documents);
     } else {
       _setMeta(null);
-      _setImages([]);
+      _setImages(<KakaoImageSearchResponseDoc>[]);
     }
     setSearchState(ImageSearchState.idle);
   }
@@ -92,7 +97,12 @@ class KakaoImageSearchBloc implements Disposable {
       setSearchState(ImageSearchState.idle);
 
       final validated = _validateQuery(query);
-      if (validated) searchImage(query);
+      if (validated) {
+        searchImage(query);
+      } else if (query == null || query.isEmpty) {
+        _setImages(<KakaoImageSearchResponseDoc>[]);
+        setSearchState(ImageSearchState.idle);
+      }
     });
   }
 

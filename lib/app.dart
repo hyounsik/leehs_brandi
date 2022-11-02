@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:leehs_brandi/globals.dart';
-import 'package:leehs_brandi/views/views.dart';
 import 'package:rxdart/rxdart.dart';
 
 class App extends StatefulWidget {

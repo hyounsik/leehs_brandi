@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:leehs_brandi/app.dart';
 import 'package:leehs_brandi/globals.dart';
-import 'package:leehs_brandi/views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

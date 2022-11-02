@@ -12,6 +12,8 @@ export 'package:routemaster/routemaster.dart';
 export 'package:leehs_brandi/models/models.dart';
 export 'package:leehs_brandi/widgets/widgets.dart';
 export 'package:leehs_brandi/views/views.dart';
+export 'package:leehs_brandi/utils/utils.dart';
+export 'package:flutter/material.dart';
 
 final env = locator<Environment>();
 final l = locator<LogService>();

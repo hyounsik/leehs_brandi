@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:leehs_brandi/globals.dart';
-import 'package:leehs_brandi/views/views.dart';
 import 'package:provider/provider.dart';
-
 import 'package:rxdart/rxdart.dart';
 
 class AppRoute {
@@ -20,6 +17,8 @@ class AppRoute {
   RoutemasterDelegate get currentRouterDelegate => _routerDelegate.value;
   Function get setRouterDelegate => _routerDelegate.add;
 
+  final KakaoImageSearchBloc imageSearchBloc = KakaoImageSearchBloc();
+
   AppRoute._() {
     RoutemasterDelegate delegate = RoutemasterDelegate(
         routesBuilder: (_) =>
@@ -29,14 +28,15 @@ class AppRoute {
               },
               '/search': (_) {
                 return MaterialPage(
-                    name: 'home',
-                    child: Provider<KakaoImageSearchBloc>(
-                        create: (_) => KakaoImageSearchBloc(),
-                        dispose: (_, bloc) => bloc.dispose(),
-                        child: const AppHome()));
+                    name: 'search',
+                    child: Provider<KakaoImageSearchBloc>.value(
+                        value: imageSearchBloc, child: const AppHome()));
               },
               '/search/detail': (_) {
-                return MaterialPage(name: 'home', child: Container());
+                return MaterialPage(
+                    name: 'detail',
+                    child: Provider<KakaoImageSearchBloc>.value(
+                        value: imageSearchBloc, child: const DetailPage()));
               }
             }));
 

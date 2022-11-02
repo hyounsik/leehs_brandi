@@ -16,7 +16,6 @@ class _AppHomeState extends State<AppHome> {
   @override
   void initState() {
     final bloc = context.read<KakaoImageSearchBloc>();
-    bloc.changeQuery('설현');
 
     _scrollController.addListener(() {
       if (_scrollController.offset >=
@@ -66,21 +65,34 @@ class _AppHomeState extends State<AppHome> {
                     ),
                   ),
                 ),
-                Expanded(
-                    child: GridView.builder(
-                  controller: _scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: thumbnailUrls.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 1.5,
-                      crossAxisSpacing: 1.5),
-                  itemBuilder: (context, index) {
-                    String thumbnailUrl = thumbnailUrls[index];
+                if (thumbnailUrls.isNotEmpty)
+                  Expanded(
+                      child: GridView.builder(
+                    controller: _scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: thumbnailUrls.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 1.5,
+                            crossAxisSpacing: 1.5),
+                    itemBuilder: (context, index) {
+                      String thumbnailUrl = thumbnailUrls[index];
 
-                    return ThumbnailTile(thumbnailUrl);
-                  },
-                )),
+                      return ThumbnailTile(
+                        thumbnailUrl,
+                        onTap: () {
+                          bloc.setSelectedImage(bloc.currentImages[index]);
+                          route.currentRouterDelegate.push('/search/detail');
+                        },
+                      );
+                    },
+                  )),
+                if (thumbnailUrls.isEmpty)
+                  const Expanded(
+                      child: Center(
+                    child: Text('검색 결과가 없습니다.'),
+                  )),
                 if (bloc.isLoding)
                   LinearProgressIndicator(
                     color: Colors.cyan,
